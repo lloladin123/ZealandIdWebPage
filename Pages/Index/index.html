@@ -7,20 +7,46 @@
     <!-- Import Boostrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Import Styles -->
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./Style/Styles.css" />
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
     <!-- Import Axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
-    <title>Index</title>
+    <title>Zealand Id</title>
 </head>
 
 <body>
     <div id="app">
-
     </div>
+    <div id="app">
+
+        <div class="login-page">
+           <transition name="fade">
+              <div v-if="!registerActive" class="wallpaper-login"></div>
+           </transition>
+           <div class="wallpaper-register"></div>
+     
+           <div class="container">
+              <div class="row">
+                 <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+                    <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">
+                       <h1>Sign In</h1>
+                       <form class="form-group">
+                          <input v-model="UsernameLogin" type="username" class="form-control" placeholder="Username" required>
+                          <br>
+                          <input v-model="passwordLogin" type="password" class="form-control" placeholder="Password" required>
+                          <br>
+                          <input type="submit" class="btn btn-primary" @click="doLogin">
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
 
     <!-- Import App -->
+    <script src="./components/LoginVue.js"></script>
     <script src="./main.js"></script>
 </body>
 
