@@ -26,3 +26,9 @@
 #create-button {
     background-color: rgb(255, 243, 135, 255);
 }
+
+#activePage {
+    color: crimson;
+    background-color: blueviolet;
+    font-size: 2px;
+}
