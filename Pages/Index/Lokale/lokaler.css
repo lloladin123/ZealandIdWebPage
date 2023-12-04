@@ -1,29 +1,28 @@
-#header {
+.topnav {
     background-color: rgb(255, 243, 135, 255);
     overflow: hidden;
-}
-
-#header a {
-    float: right;
-    color: black; /* change color */
+  }
+  
+  .topnav a {
+    color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-
-}
-
-#header #logo-link {
-    float: left;
-
-}
-
-#header a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-#header a.active {
+    float: right;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
     background-color: rgb(255, 243, 135, 255);
     color: white;
+  }
+
+  .Logo{
+    float: left;
+  }
+    
+
+#create-button {
+    background-color: rgb(255, 243, 135, 255);
 }

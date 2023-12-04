@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
         <!-- Import Boostrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <!-- Import Styles -->
         <link rel="stylesheet" type="text/css" href="./lokaler.css">
         <!-- Import Vue.js -->
@@ -16,36 +17,39 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-sm" id="header">
-        <div class="container-fluid">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="navbar-brand" href="https://www.zealand.dk/" id="logo-link">This is Zealands logo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Search</a> <!-- Add href link -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Bruger</a> <!-- Add href link -->
-            </li>
-          </ul>
-        </div>   
-    </nav>
+  <div id="app">
+    <div class="topnav">
+        <a class="topnav-image" href="#">
+          <div class="Icons">
+            <img src="/Pages/Index/assets/Glass.jpg" style="height: 20px; width: 20px;">
+          </div>
+        </a>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 bg-light">
-                <!--sidebar content here-->
-                <p>Her skal listen med alle lokaler være, or something</p>
-            </div>
-            <div class="col-md-9">
-                <p>Her er udvidede afdeling med alle lokaler, or something</p>
-            </div>
-        </div>
+        <a class="topnav-image" href="#">
+          <div class="Icons">
+            <img src="/Pages/Index/assets/Person.jpg"style="height: 30px; width: 30px;">
+          </div>
+        </a>
+
+        <div class="Logo">
+        <a class="topnav-image" href="/Pages/Index/Forside/Forside.html">
+          <div class="topnav-image">
+            <img src="/Pages/Index/assets/Zealand_logo.jpg" style="height: 20px;" style="float: left;">
+          </div>
+        </a>
+      </div>
     </div>
+  </div>
 
+  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%" style="margin-left:25%">
+    <br>
+    <a href="#" class="w3-bar-item w3-button">Sensor</a>
+    <a href="#" class="w3-bar-item w3-button">Lokaler</a>
+    <a href="#" class="w3-bar-item w3-button">Adminstration</a>
+    <button type="button" class="w3-bar-item w3-button" id="create-button">Create</button>
+    
+  </div>
 
-      
 
 
 </body>
