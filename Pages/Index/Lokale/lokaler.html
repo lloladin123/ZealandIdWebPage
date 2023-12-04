@@ -25,20 +25,20 @@
     <div class="topnav">
         <a class="topnav-image" href="#">
           <div class="Icons">
-            <img src="/assets/Glass.jpg" style="height: 20px; width: 20px;">
+            <img src="/assets/Glass.jpg" style="height: 20px; width: 20px;" alt="Search icon">
           </div>
         </a>
 
         <a class="topnav-image" href="#">
           <div class="Icons">
-            <img src="/assets/Person.jpg"style="height: 30px; width: 30px;">
+            <img src="/assets/Person.jpg" style="height: 30px; width: 30px;" alt="Person icon">
           </div>
         </a>
 
         <div class="Logo">
         <a class="topnav-image" href="/Pages/Index/Forside/Forside.html">
           <div class="topnav-image">
-            <img src="/assets/Zealand_logo.jpg" style="height: 20px;" style="float: left;">
+            <img src="/assets/Zealand_logo.jpg" style="height: 20px;" style="float: left;" alt="Zealand logo">
           </div>
         </a>
 
@@ -76,5 +76,26 @@
 </div>
 <!--#endregion-->
   
+
+<script>
+  // JavaScript to handle the active state
+  document.addEventListener('DOMContentLoaded', function () {
+      // Get the current page URL
+      var currentUrl = window.location.href;
+
+      // Get all navigation links
+      var navLinks = document.querySelectorAll('.w3-sidebar a');
+
+      // Loop through each link and check if its href matches the current URL
+      navLinks.forEach(function (link) {
+          if (link.href === currentUrl) {
+              // Add the 'active' class to the link
+              link.classList.add('active');
+          }
+      });
+  });
+</script>
+
+
 </body>
 </html>
