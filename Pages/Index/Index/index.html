@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Import Boostrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./Style/Styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+    <!-- Import Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <!-- Import Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <title>Zealand Id</title>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <div id="app">
+        <div class="login-page">
+           <transition name="fade">
+              <div v-if="!registerActive" class="wallpaper-login"></div>
+           </transition>
+         <div id="app">
+            <div id="login-box">
+               <img src="./Style/Images/Zealand_logo.jpg" alt="Logo">
+                <form @submit.prevent="login">
+                    <h1 class="title">Login</h1>
+                    <div v-if="loginError" class="error">{{ lav senere }}</div>
+                     <br>
+                        <input type="text" id="username" v-model="username" placeholder="Username" required>
+                        <br>
+                        <input type="password" id="password" v-model="password" placeholder="Password" required>
+                        <br>
+                        <button type="submit">Login</button>
+                </form>
+                <div v-if="loginError" class="error"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+    <!-- Import App -->
+    <script src="./index.js"></script>
+    <script src="./components/LoginVue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
