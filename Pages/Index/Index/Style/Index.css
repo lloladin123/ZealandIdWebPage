@@ -21,6 +21,7 @@ body {
    bottom: 10px;
    left: 10px;
    max-width: 150px;
+   opacity: 50%;
  }
 
  form {

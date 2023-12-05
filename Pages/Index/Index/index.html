@@ -6,7 +6,7 @@
     <!-- Import Boostrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Import Styles -->
-    <link rel="stylesheet" href="./Style/Styles.css" />
+    <link rel="stylesheet" href="./Style/Index.css" />
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
     <!-- Import Axios -->
@@ -19,7 +19,9 @@
    <div id="app">
        <div class="login-page">
            <div id="login-box">
-               <img src="./Style/Images/Zealand_logo.jpg" alt="Logo">
+            <div>
+                <img src="/assets/Zealand_logo.jpg" alt="Logo">
+            </div> 
                <form @submit.prevent="login">
                    <h1 class="title">Login</h1>
                    <div v-if="loginfail" class="error">
