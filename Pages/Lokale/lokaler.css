@@ -21,7 +21,7 @@ body {
   
 @media (max-width: 991.98px) {
     .sidebar {
-      width: 20%; /* Change this value to make the length of the sidebar smaller, when the screen is small */
+      width: 50%; /* Change this value to make the length of the sidebar smaller, when the screen is small */
     }
 }
 
