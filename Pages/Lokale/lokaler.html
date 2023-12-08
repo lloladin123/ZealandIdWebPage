@@ -90,29 +90,26 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 58px">
-  <div class="container pt-4">
+<div id="app">
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
 
-    <h1>This is a liste med lokaler</h1>
-    <p>lokaler go hard af</p>
+      <h1>This is a liste med lokaler</h1>
+      <p>lokaler go hard af</p>
 
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-secondary">Første lokale</li>
-      
-      <li class="list-group-item list-group-item-secondary">Andet lokale</li>
+      <ul class="list-group">
+        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale">{{ lokale }}</li>
+        <li class="list-group-item list-group-item-secondary">Andet lokale</li>
+        <li class="list-group-item">Lokale 3</li>
+        <li class="list-group-item list-group-item-warning">Lokale 4</li>
+        <li class="list-group-item list-group-item-dark">Lokale 5</li>    
+      </ul>
 
-      <li class="list-group-item">Lokale 3</li>
+      <add-lokale @addItem="handleAddItem"></add-lokale>
 
-      <li class="list-group-item list-group-item-warning">Lokale 4</li>
-
-      <li class="list-group-item list-group-item-dark">Lokale 5</li>
-
-
-    </ul>
-
-
-  </div>
-</main>
+    </div>
+  </main>
+</div>
 <!--Main layout-->
 
 <!-- #region Modal -->
@@ -135,5 +132,7 @@
 </div>
 <!--#endregion-->
 
+  <!-- Import JS -->
+  <script src="./main.js"></script>
 </body>
 </html>
