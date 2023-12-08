@@ -117,8 +117,8 @@
         <!-- Form for creating new item-->
           <form @submit.prevent="handleAddItem">
             <div class="mb-3">
-              <label for="inputData" class="form-label">Skriv prompt for lokale:</label>
-              <input v-model="newLokale" type="text" class="form-control" id="inputData" placeholder="Enter data here" @keyup.enter="handleEnterKey">
+              <label for="inputData" class="form-label">Skriv navnet på det nye lokale, som du ønsker at oprette.</label>
+              <input v-model="newLokale" type="text" class="form-control" id="inputData" placeholder="Navn på lokale">
             </div>
 
             <div class="modal-footer">

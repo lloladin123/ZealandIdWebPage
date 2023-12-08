@@ -10,16 +10,16 @@ const app = Vue.createApp({
     methods: {
       handleAddItem() {
         this.lokalerList.push(this.newLokale); // Add new lokale to list
-        this.newLokale = ""; 
+        this.newLokale = "";                   // Clear text block
 
         // Log to update list (for testing)
         console.log('Updated lokaler list:', this.lokalerList);
         },
 
-      handleEnterKey() {
+        /* handleEnterKey() {
         // Trigger the button click when the Enter key is pressed
         this.handleAddItem();
-        },
+        }, */
 
 
     },
