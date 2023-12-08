@@ -2,23 +2,28 @@ const app = Vue.createApp({
 
     data() {
       return {
-        lokalerList: [], // your data
-        newLokale: "", // store value of new item
+        lokalerList: [], // Empty array of lokaler
+        newLokale: "", // Store the value of a new lokale
       };
     },
   
     methods: {
       handleAddItem() {
-        // add newlokale to list
-        this.lokalerList.push(this.newLokale);
+        this.lokalerList.push(this.newLokale); // Add new lokale to list
+        this.newLokale = ""; 
 
-        this.newLokale = "";
-
-        // Log updated list
+        // Log to update list (for testing)
         console.log('Updated lokaler list:', this.lokalerList);
-      },
+        },
+
+      handleEnterKey() {
+        // Trigger the button click when the Enter key is pressed
+        this.handleAddItem();
+        },
+
+
     },
-  
+
 });
   
 // Mount the app to the root element with id="app" 

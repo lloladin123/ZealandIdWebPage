@@ -20,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 <body>
+  <div id="app">
 
 <!--Main Navigation-->
 <header>
@@ -30,24 +31,24 @@
 
         <a href="/Pages/Sensor/Sensor.html" class="list-group-item list-group-item-action py-2 ripple">
           <i class="bi bi-broadcast"></i>
-          <span>Sensorer</span>
+          <span> Sensorer</span>
         </a>
       
         <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple active">    
           <i class="bi bi-house"></i>
-           <span>Lokaler</span>
+           <span> Lokaler</span>
         </a>
 
         <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple">
           <i class="bi bi-shield-lock"></i>
-           <span>Administration</span>
+           <span> Administration</span>
         </a>
 
-        <button type="button" class="list-group-item list-group-item-action py-2 ripple mt-auto" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
           <i class="bi bi-journal-plus"></i> 
           Opret nyt lokale
         </button>
-           
+     
       </div>   
     </div>
   </nav>
@@ -90,27 +91,21 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<div id="app">
   <main style="margin-top: 58px">
     <div class="container pt-4">
 
       <h2>Her er der et overblik over alle oprettede lokaler</h2>
       <h3>Benyt opret/opdater knappen, hvis du vil tilføje eller ændre lokaler</h3>
 
-      <ul class="list-group">
-        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale">{{ lokale }}</li>
-        <!-- Input for the new item -->
-        <input v-model="newLokale" placeholder="Enter new Lokale">
-        <!-- Add Lokale Item button -->
-        <button @click="handleAddItem" class="btn btn-primary">Add Lokale Item</button>
+      <ul class="list-group col-md-4">
+        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale"> {{ lokale }}</li>
       </ul>
 
     </div>
   </main>
-</div>
 <!--Main layout-->
 
-<!-- #region Modal -->
+<!-- #region Modal - this is the popup that appears when you press opret nyt x button -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -119,18 +114,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Skriv command prompt for lokale</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-        <button type="button" class="btn btn-primary">Opret</button>
+        <!-- Form for creating new item-->
+          <form @submit.prevent="handleAddItem">
+            <div class="mb-3">
+              <label for="inputData" class="form-label">Skriv prompt for lokale:</label>
+              <input v-model="newLokale" type="text" class="form-control" id="inputData" placeholder="Enter data here" @keyup.enter="handleEnterKey">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+              <button @click="handleAddItem" type="button" class="btn btn-primary">Opret</button>
+            </div>
+          
+          </form>
       </div>
     </div>
   </div>
 </div>
 <!--#endregion-->
 
-  <!-- Import JS -->
+</div>
+<!-- Import JS -->
   <script src="./main.js"></script>
 </body>
 </html>
