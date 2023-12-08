@@ -8,22 +8,36 @@ const app = Vue.createApp({
     },
   
     methods: {
-      handleAddItem() {
-        this.lokalerList.push(this.newLokale); // Add new lokale to list
-        this.newLokale = "";                   // Clear text block
+     
+       /* handleAddItem() {
+            this.lokalerList.push(this.newLokale); // Add new lokale to list
+            this.newLokale = "";                   // Clear text block
 
-        // Log to update list (for testing)
-        console.log('Updated lokaler list:', this.lokalerList);
+            // Log to update list (for testing)
+            console.log('Updated lokaler list:', this.lokalerList);
+        },*/
+
+        async addLokale() {
+            try {
+                // Make a POST request to your backend API to add a new lokale
+                const response = await axios.post('YOUR_BACKEND_API_ENDPOINT', {
+                    name: this.newLokale,
+                });
+
+                // Assuming the response includes the added lokale with an ID
+                const newLokale = response.data;
+                this.lokalerList.push(newLokale);
+
+                // Clear the input field
+                this.newLokale = '';
+
+                // Log to update list (for testing)
+                console.log('Updated lokaler list:', this.lokalerList);
+            }   catch (error) {
+                console.error('Error adding lokale:', error);
+            }
         },
-
-        /* handleEnterKey() {
-        // Trigger the button click when the Enter key is pressed
-        this.handleAddItem();
-        }, */
-
-
     },
-
 });
   
 // Mount the app to the root element with id="app" 
