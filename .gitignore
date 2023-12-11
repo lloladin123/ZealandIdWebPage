@@ -3,3 +3,7 @@ tests/WebsiteTests/.vs/WebsiteTests/FileContentIndex/1183e2e0-c578-476b-8c96-b02
 tests/WebsiteTests/.vs/WebsiteTests/FileContentIndex/cfc36bcb-7af9-4962-84d4-5f8d51daa06e.vsidx
 tests/WebsiteTests/.vs/WebsiteTests/FileContentIndex/d19eda7e-f83f-4cca-bbee-96479d0413d1.vsidx
 tests/WebsiteTests/.vs/WebsiteTests/FileContentIndex/fde1405a-f8e6-4c03-bde2-7af9037c8580.vsidx
+*.vsidx
+*.v2
+*.v2
+tests/WebsiteTests/.vs/WebsiteTests/DesignTimeBuild/.dtbcache.v2
