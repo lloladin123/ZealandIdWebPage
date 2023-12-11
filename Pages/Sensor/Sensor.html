@@ -42,13 +42,19 @@
           <i class="bi bi-shield-lock"></i>
            <span>Administration</span>
         </a>
-           
+
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-journal-plus"></i> 
+          Opret nyt lokale
+        </button>
+
       </div>   
     </div>
   </nav>
   <!-- Sidebar -->
 
   <!-- Navbar -->
+  
   <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar">
     <!-- Container wrapper -->
     <div class="container-fluid">
@@ -61,15 +67,12 @@
       
       <!-- Logo -->
       <a class="navbar-brand" href="/Pages/Forside/Forside.html">
-        <img src="/Pages/assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
+        <img src="./assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
       </a>
 
       <div class="ms-auto d-flex flex-row">
-      <a class="topnav-image me-3" href="#">
-        <div class="Icons">
-          <img src="/Pages/assets/Glass.jpg" style="height: 20px; width: 20px;">
-        </div>
-      </a>
+        <a class="topnav-image me-3" href="#">
+        </a>
 
       <a class="topnav-image" href="#">
         <div class="Icons">
@@ -77,7 +80,6 @@
         </div>
       </a>
       </div>
-
     </div>
     <!-- Container wrapper -->
   </nav>
@@ -88,6 +90,24 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
   <div class="container pt-4">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group rounded">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="bi bi-search"></i>
+          </span>      
+        </div>
+      </div>
+
+      <div class="col-md-2 list-group">
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-journal-plus"></i>
+        Opret nyt Sensor
+        </button>
+      </div>
+  </div>
 
     <h1>Sensorer</h1>
   <br>
@@ -103,15 +123,8 @@
       <li class="list-group-item list-group-item-dark">Femte 5</li>
     </ul>
 
+    
   </div>
-
-  <div class="container pt-4">
-
-  <br>
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-secondary" style="background-color: #8793FF;">Første sensor</li>
-    </ul>
-
   </div>
 </main>
 <!--Main layout-->
@@ -134,7 +147,37 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createModalLabel">Opret ny sensor</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form for creating new item-->
+          <form @submit.prevent="addSensor">
+            <div class="mb-3">
+              <label for="inputData" class="form-label">Skriv navnet på den nye sensor, som du ønsker at oprette.</label>
+              <input v-model="newSensor" type="text" class="form-control" id="inputData" placeholder="Navn på Sensor">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+              <button @click="addSensor" type="button" class="btn btn-primary">Opret</button>
+            </div>
+          
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!--#endregion-->
 
+<script src="./mainSensor.js"></script>
 </body>
 </html>
