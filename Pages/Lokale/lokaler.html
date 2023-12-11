@@ -55,6 +55,33 @@
     <button type="button" class="w3-bar-item w3-button" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">Opret nyt lokale</button>
   </div>
 
+  <!-- #region Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="createModalLabel">Opret nyt lokale</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Your modal content goes here -->
+              <form>
+                  <div class="mb-3">
+                      <label for="lokaleNavn" class="form-label">Lokale Navn:</label>
+                      <input type="text" class="form-control" id="lokaleNavn" placeholder="Lokale Navn">
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="submitForm()">Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!--#endregion-->
+
+
 
 <!-- #region Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
@@ -76,26 +103,37 @@
 </div>
 <!--#endregion-->
   
-
 <script>
-  // JavaScript to handle the active state
   document.addEventListener('DOMContentLoaded', function () {
-      // Get the current page URL
       var currentUrl = window.location.href;
-
-      // Get all navigation links
       var navLinks = document.querySelectorAll('.w3-sidebar a');
 
-      // Loop through each link and check if its href matches the current URL
       navLinks.forEach(function (link) {
-          if (link.href === currentUrl) {
-              // Add the 'active' class to the link
+          if (link.href === 'file:///C:/Users/Sami/Documents/GitHub/ZealandIdWebPage/Pages/Lokale/lokaler.html') {
               link.classList.add('active');
           }
       });
+
+      // Make an asynchronous request to the C# Web API endpoint
+      axios.get('https://localhost:7006/api/Sensors')
+          .then(function (response) {
+              // Handle the successful response here
+              console.log('API response:', response.data);
+
+              // Update the HTML to display the fetched data
+              var dataList = document.getElementById('data-list');
+              response.data.forEach(function (item) {
+                  var listItem = document.createElement('li');
+                  listItem.textContent = item.name; // Assuming your API returns an array of objects with a 'name' property
+                  dataList.appendChild(listItem);
+              });
+          })
+          .catch(function (error) {
+              // Handle errors here
+              console.error('API error:', error);
+          });
   });
 </script>
-
 
 </body>
 </html>
