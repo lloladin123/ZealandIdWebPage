@@ -24,35 +24,55 @@
 </head>
 <body>
    <div id="app">
-       <div class="login-page">
-           <div id="login-box">
-            <div>
-                <img src="/Pages/Index/assets/Zealand_logo.jpg" alt="Logo">
-            </div> 
+       <div class="container">
+            <div class="welcome-section">
+                <h1 class="display-4">Velkommen</h1>
+                <p class="lead">Log ind for at få adgang til unikke funktioner</p>
+            </div>
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="https://www.zealand.dk/">
+                <img src="/Pages/assets/Zealand_logo.jpg"  alt="Zealand logo" loading="lazy">
+            </a>
+
+            <!-- Login section-->
+           <div class="login-section">
+                <h2 class="mb-4">Log ind</h2>
+                
+                <!-- Login form goes here -->
                <form @submit.prevent="login">
-                   <h1 class="title">Login</h1>
-                   <div v-if="loginfail" class="error">
+                  <!-- <div v-if="loginfail" class="error">
                        {{ loginError }}
-                   </div>
-                   <br>
-                   <input type="text" id="username" v-model="username" placeholder="Username" required>
-                   <br>
-                   <input type="password" id="password" v-model="password" placeholder="Password" required>
-                   <br>
-                   <button type="submit">Login</button>
-                   <br>
+                   </div> -->
+                   
+                   <div class="form-group">
+                        <input type="text" class="form-control" id="username" v-model="username" placeholder="Brugernavn" required autocomplete="username">
+                    </div>
+                
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" v-model="password" placeholder="Adgangskode" required autocomplete="current-password">
+                    </div>
+                   
+                    <a href="/Pages/Forside/Forside.html">
+                    <button type="submit" class="btn btn-primary">LOG IND</button>
+                    </a>
                </form>
-               <div v-if="loginfail" class="error"></div>
+               <!-- <div v-if="loginfail" class="error"></div> -->
 
+            
+               <!-- Google log-in
                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
+               -->
            </div>
        </div>
    </div>
 
     <!-- Import App -->
     <script src="./index.js"></script>
-    <script src="./components/LoginVue.js"></script>
-    <script src="./main.js"></script>
+    <script src="/Pages/components/LoginVue.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
