@@ -20,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 <body>
+  <div id="app">
 
 <!--Main Navigation-->
 <header>
@@ -30,23 +31,18 @@
 
         <a href="/Pages/Sensor/Sensor.html" class="list-group-item list-group-item-action py-2 ripple active"> <!-- active class highlights page-->
           <i class="bi bi-broadcast"></i>
-          <span>Sensorer</span>
+          <span> Sensorer</span>
         </a>
       
         <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple">    
           <i class="bi bi-house"></i>
-           <span>Lokaler</span>
+           <span> Lokaler</span>
         </a>
 
         <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple">
           <i class="bi bi-shield-lock"></i>
-           <span>Administration</span>
+           <span> Administration</span>
         </a>
-
-        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
-          <i class="bi bi-journal-plus"></i> 
-          Opret nyt lokale
-        </button>
 
       </div>   
     </div>
@@ -54,8 +50,7 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar">
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar border-bottom">
     <!-- Container wrapper -->
     <div class="container-fluid">
 
@@ -70,16 +65,15 @@
         <img src="./assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
       </a>
 
+      <!-- User button-->
       <div class="ms-auto d-flex flex-row">
-        <a class="topnav-image me-3" href="#">
+        <a class="topnav-image" href="#">
+          <div class="Icons">
+            <img src="/Pages/assets/Person.jpg" style="height: 30px; width: 30px;">
+          </div>
         </a>
+        </div>  
 
-      <a class="topnav-image" href="#">
-        <div class="Icons">
-          <img src="/Pages/assets/Person.jpg" style="height: 30px; width: 30px;">
-        </div>
-      </a>
-      </div>
     </div>
     <!-- Container wrapper -->
   </nav>
@@ -104,27 +98,18 @@
       <div class="col-md-2 list-group">
         <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
           <i class="bi bi-journal-plus"></i>
-        Opret nyt Sensor
+        Opret sensor
         </button>
       </div>
-  </div>
+    </div>
 
-    <h1>Sensorer</h1>
-  <br>
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-secondary" style="background-color: #8793FF;">Første sensor</li>
-      
-      <li class="list-group-item list-group-item-secondary">Sensor 2</li>
-
-      <li class="list-group-item">Sensor 3</li>
-
-      <li class="list-group-item list-group-item-warning">Sensor 4</li>
-
-      <li class="list-group-item list-group-item-dark">Femte 5</li>
+    <h2>Sensorer</h2>
+   
+    <ul class="list-group col-md-4">
+      <li v-for="sensor in sensorList" class="list-group-item list-group-item-secondary" :key="sensor.name"> {{ sensor.name ? sensor.name : 'No ID' }}</li>
     </ul>
 
     
-  </div>
   </div>
 </main>
 <!--Main layout-->
@@ -138,30 +123,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Skriv prompt for sensor</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-        <button type="button" class="btn btn-primary">Opret</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="createModalLabel">Opret ny sensor</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
         <!-- Form for creating new item-->
           <form @submit.prevent="addSensor">
             <div class="mb-3">
-              <label for="inputData" class="form-label">Skriv navnet på den nye sensor, som du ønsker at oprette.</label>
-              <input v-model="newSensor" type="text" class="form-control" id="inputData" placeholder="Navn på Sensor">
+              <label for="inputData" class="form-label">Skriv navnet på den sensor, som du ønsker at oprette.</label>
+              <input v-model="newSensor" type="text" class="form-control" id="inputData" placeholder="Navn på sensor">
             </div>
 
             <div class="modal-footer">
@@ -174,10 +140,10 @@
     </div>
   </div>
 </div>
-
-
 <!--#endregion-->
 
+</div>
+<!-- Import JS -->
 <script src="./mainSensor.js"></script>
 </body>
 </html>

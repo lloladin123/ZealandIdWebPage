@@ -38,7 +38,7 @@ const app = Vue.createApp({
         async addLokale() {
             try {
                 // Make a POST request to your backend API to add a new lokale
-                const response = await axios.post('http://127.0.0.1:5000/lokaler', {
+                const response = await axios.post('https://fu-recent-flask.azurewebsites.net/lokaler', {
                     name: this.newLokale,
                 });
 

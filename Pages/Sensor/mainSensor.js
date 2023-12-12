@@ -8,19 +8,10 @@ const app = Vue.createApp({
     },
   
     methods: {
-     
-       /* handleAddItem() {
-            this.lokalerList.push(this.newLokale); // Add new lokale to list
-            this.newLokale = "";                   // Clear text block
-
-            // Log to update list (for testing)
-            console.log('Updated lokaler list:', this.lokalerList);
-        },*/
-
         async addSensor() {
             try {
                 // Make a POST request to your backend API to add a new lokale
-                const response = await axios.post('http://127.0.0.1:5000/sensor', {
+                const response = await axios.post('https://fu-recent-flask.azurewebsites.net/sensors', {
                     name: this.newSensor,
                 });
 

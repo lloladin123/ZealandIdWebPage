@@ -1,14 +1,10 @@
-.navbar-brand img {
-  margin-right: 200%;
-}
-
 body {
   background-color: #fbfbfb;
-}
-@media (min-width: 991.98px) {
-  main {
-    padding-left: 240px;
   }
+  @media (min-width: 991.98px) {
+    main {
+      padding-left: 240px;
+    }
 }
 
 /* Sidebar */ 
@@ -45,6 +41,7 @@ body {
 
 .container-fluid {
   background-color: rgb(255, 243, 135, 255);
+  height: 60px;
 }
 
 .custom-navbar {
@@ -55,8 +52,6 @@ body {
   background-color: rgb(255, 243, 135, 255);
 }
 
-.container-fluid {
-  height: 75px;
-  display: block;
-  gap: 20px;
+.navbar-brand {
+  padding-left: 17px;
 }

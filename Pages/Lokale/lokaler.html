@@ -16,7 +16,7 @@
   <!-- Import Axios -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
-  <title>Lokaler - opdater eller fjern</title>  
+  <title>Lokaler - opret eller ændr lokaler</title>  
   <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 <body>
@@ -43,11 +43,6 @@
           <i class="bi bi-shield-lock"></i>
            <span> Administration</span>
         </a>
-
-        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
-          <i class="bi bi-journal-plus"></i> 
-          Opret nyt lokale
-        </button>
      
       </div>   
     </div>
@@ -55,7 +50,7 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar">
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar border-bottom">
     <!-- Container wrapper -->
     <div class="container-fluid">
 
@@ -69,13 +64,8 @@
         <img src="/Pages/assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
       </a>
 
+      <!-- User button-->
       <div class="ms-auto d-flex flex-row">
-        <a class="topnav-image me-3" href="#">
-          <div class="Icons">
-            <img src="/Pages/assets/Glass.jpg" style="height: 20px; width: 20px;">
-          </div>
-        </a>
-  
         <a class="topnav-image" href="#">
           <div class="Icons">
             <img src="/Pages/assets/Person.jpg" style="height: 30px; width: 30px;">
@@ -103,21 +93,20 @@
             </span>      
           </div>
         </div>
-
+      
         <div class="col-md-2 list-group">
           <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
             <i class="bi bi-journal-plus"></i>
-          Opret nyt lokale
+            Opret lokale
           </button>
         </div>
-    </div>
+      </div>
 
-    
       <h2>Her er der et overblik over alle oprettede lokaler</h2>
       <h3>Benyt opret/opdater knappen, hvis du vil tilføje eller ændre lokaler</h3>
 
       <ul class="list-group col-md-4">
-        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale.id"> {{ lokale.id ? lokale.id : 'No ID' }}</li>
+        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale.name"> {{ lokale.name ? lokale.name : 'No ID' }}</li>
       </ul>
 
     </div>
@@ -129,14 +118,14 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="createModalLabel">Opret nyt lokale</h1>
+        <h1 class="modal-title fs-5" id="createModalLabel">Opret et lokale</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <!-- Form for creating new item-->
           <form @submit.prevent="addLokale">
             <div class="mb-3">
-              <label for="inputData" class="form-label">Skriv navnet på det nye lokale, som du ønsker at oprette.</label>
+              <label for="inputData" class="form-label">Skriv navnet på det lokale, som du ønsker at oprette.</label>
               <input v-model="newLokale" type="text" class="form-control" id="inputData" placeholder="Navn på lokale">
             </div>
 
@@ -154,6 +143,6 @@
 
 </div>
 <!-- Import JS -->
-  <script src="./main.js"></script>
+<script src="./main.js"></script>
 </body>
 </html>
