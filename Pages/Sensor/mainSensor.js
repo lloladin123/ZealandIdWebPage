@@ -2,20 +2,20 @@ const app = Vue.createApp({
 
     data() {
       return {
-        sensorList: [], // Empty array of lokaler
-        newSensor: "", // Store the value of a new lokale
+        sensorList: [], // Empty array of sensors
+        newSensor: "", // Store the value of a new sensor
       };
     },
   
     methods: {
         async addSensor() {
             try {
-                // Make a POST request to your backend API to add a new lokale
+                // Make a POST request to your backend API to add a new sensor
                 const response = await axios.post('https://fu-recent-flask.azurewebsites.net/sensors', {
                     name: this.newSensor,
                 });
 
-                // Assuming the response includes the added lokale with an ID
+                // Assuming the response includes the added sensor with an ID
                 const newSensor = response.data;
                 this.sensorList.push(newSensor);
 

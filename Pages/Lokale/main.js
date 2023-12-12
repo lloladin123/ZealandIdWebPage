@@ -60,4 +60,3 @@ const app = Vue.createApp({
   
 // Mount the app to the root element with id="app" 
 app.mount("#app");
-  

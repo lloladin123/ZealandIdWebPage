@@ -16,10 +16,11 @@
   <!-- Import Axios -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
-  <title>Administrationsside</title>
+  <title>Administrationsside - oversigt for alle administratorer</title>
   <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 <body>
+  <div id="app">
 
 <!--Main Navigation-->
 <header>
@@ -30,23 +31,18 @@
 
         <a href="/Pages/Sensor/Sensor.html" class="list-group-item list-group-item-action py-2 ripple">
           <i class="bi bi-broadcast"></i>
-          <span>Sensorer</span>
+          <span> Sensorer</span>
         </a>
       
         <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple">    
           <i class="bi bi-house"></i>
-           <span>Lokaler</span>
+           <span> Lokaler</span>
         </a>
 
         <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple active">
           <i class="bi bi-shield-lock"></i>
-           <span>Administration</span>
+           <span> Administration</span>
         </a>
-
-        <button type="button" class="list-group-item list-group-item-action py-2 ripple mt-auto" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
-          <i class="bi bi-journal-plus"></i> 
-          Opret ny bruger/admin (or something?)
-        </button>
            
       </div>   
     </div>
@@ -54,7 +50,7 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar">
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar border-bottom">
     <!-- Container wrapper -->
     <div class="container-fluid">
 
@@ -68,13 +64,8 @@
         <img src="/Pages/assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
       </a>
 
+      <!-- User button-->
       <div class="ms-auto d-flex flex-row">
-        <a class="topnav-image me-3" href="#">
-          <div class="Icons">
-            <img src="/Pages/assets/Glass.jpg" style="height: 20px; width: 20px;">
-          </div>
-        </a>
-  
         <a class="topnav-image" href="#">
           <div class="Icons">
             <img src="/Pages/assets/Person.jpg" style="height: 30px; width: 30px;">
@@ -93,21 +84,29 @@
 <main style="margin-top: 58px">
   <div class="container pt-4">
 
-    <h1>Velkommen admin til Zealands id-scanner og administration</h1>
-    <p>I listen nedenfor (eller sidebar'en), kan du invitere nye admins til håndtering af Zealands ID'er</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group rounded">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="bi bi-search"></i>
+          </span>      
+        </div>
+      </div>
+    
+      <div class="col-md-2 list-group">
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-journal-plus"></i>
+          Opret admin
+        </button>
+      </div>
+    </div>
 
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-secondary">Admin 1</li>
-      
-      <li class="list-group-item list-group-item-secondary">Admin 2</li>
+    <h2>Velkommen admin til Zealands id-scanner og administration</h2>
+    <p>I listen nedenfor, kan du invitere nye admins til håndtering af Zealands ID'er</p>
 
-      <li class="list-group-item">Admin 3</li>
-
-      <li class="list-group-item list-group-item-warning">Admin 4</li>
-
-      <li class="list-group-item list-group-item-dark">Admin 5</li>
-
-
+    <ul class="list-group col-md-4">
+      <li v-for="admin in adminList" class="list-group-item list-group-item-secondary" :key="admin.name"> {{ admin.name ? admin.name : 'No ID' }}</li>
     </ul>
 
   </div>
@@ -119,20 +118,31 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="createModalLabel">Opret nyt lokale</h1>
+        <h1 class="modal-title fs-5" id="createModalLabel">Opret en admin</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Skriv command prompt for lokale</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-        <button type="button" class="btn btn-primary">Opret</button>
+        <!-- Form for creating new item-->
+          <form @submit.prevent="addAdmin">
+            <div class="mb-3">
+              <label for="inputData" class="form-label">Skriv navnet på den admin, som du ønsker at oprette.</label>
+              <input v-model="newAdmin" type="text" class="form-control" id="inputData" placeholder="Navn på admin">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+              <button @click="addAdmin" type="button" class="btn btn-primary">Opret</button>
+            </div>
+          
+          </form>
       </div>
     </div>
   </div>
 </div>
 <!--#endregion-->
 
+</div>
+<!-- Import JS -->
+<script src="./mainAdmin.js"></script>
 </body>
 </html>
