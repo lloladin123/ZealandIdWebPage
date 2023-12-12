@@ -41,6 +41,7 @@ body {
 
 .container-fluid {
   background-color: rgb(255, 243, 135, 255);
+  height: 60px;
 }
 
 .custom-navbar {
@@ -49,4 +50,8 @@ body {
 
 #create-button {
   background-color: rgb(255, 243, 135, 255);
+}
+
+.navbar-brand {
+  padding-left: 17px;
 }
