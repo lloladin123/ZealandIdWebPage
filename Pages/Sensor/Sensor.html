@@ -1,58 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-        <!-- Import Bootstrap-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- Import Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <!-- Import Styles -->
+  <link rel="stylesheet" type="text/css" href="./sensor.css">
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  <!-- Import Axios -->      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
-        <!-- Import Styles -->
-        <link rel="stylesheet" type="text/css" href="./Sensor.css">
-        <!-- Import Vue.js -->
-        <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
-        <!-- Import Axios -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zealand sensor</title>
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <title>Sensorer ledige hos Zealand</title>
+  <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 <body>
 
+<!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="navbarNav" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
 
-  <!-- #region NAVIGATION BAR-->
-  <div id="app">
-    <div class="topnav">
-        <a class="topnav-image" href="#">
-          <div class="Icons">
-            <img src="./assets/Glass.jpg" style="height: 20px; width: 20px;">
-          </div>
+        <a href="/Pages/Sensor/Sensor.html" class="list-group-item list-group-item-action py-2 ripple active"> <!-- active class highlights page-->
+          <i class="bi bi-broadcast"></i>
+          <span>Sensorer</span>
+        </a>
+      
+        <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple">    
+          <i class="bi bi-house"></i>
+           <span>Lokaler</span>
         </a>
 
-        <a class="topnav-image" href="#">
-          <div class="Icons">
-            <img src="./assets/Person.jpg"style="height: 30px; width: 30px;">
-          </div>
+        <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="bi bi-shield-lock"></i>
+           <span>Administration</span>
         </a>
-        <div class="Logo">
-        <a class="topnav-image" href="/Pages/Forside/Forside.html">
-          <div class="topnav-image">
-            <img src="./assets/Zealand_logo.jpg"style="height: 20px;" style="float: left;">
-          </div>
-        </a>
-      </div>
+
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple mt-auto" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-journal-plus"></i> 
+          Opret ny sensor
+        </button>
+           
+      </div>   
     </div>
-  </div>
-  <!--#endregion-->
+  </nav>
+  <!-- Sidebar -->
 
-  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%" style="margin-left:25%">
-    <br>
-    <a href="/Pages/Lokale/lokaler.html" class="w3-bar-item w3-button" id="activePage">Lokaler</a>
-    <a href="/Pages/Sensor/Sensor.html" class="w3-bar-item w3-button" id="activePage">Sensor</a>
-    <a href="/Pages/Admin/Admin.html" class="w3-bar-item w3-button">Administration</a>
-    <button type="button" class="w3-bar-item w3-button" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">Opret nyt sensor</button>
-  </div>
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
 
+      <!-- Toggle button for small screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Logo -->
+      <a class="navbar-brand" href="/Pages/Forside/Forside.html">
+        <img src="/Pages/assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
+      </a>
+
+      <div class="ms-auto d-flex flex-row">
+      <a class="topnav-image me-3" href="#">
+        <div class="Icons">
+          <img src="/Pages/assets/Glass.jpg" style="height: 20px; width: 20px;">
+        </div>
+      </a>
+
+      <a class="topnav-image" href="#">
+        <div class="Icons">
+          <img src="/Pages/assets/Person.jpg" style="height: 30px; width: 30px;">
+        </div>
+      </a>
+      </div>
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+  <div class="container pt-4">
+
+    <h1>Sensorer</h1>
+    <h1>This is en overblik over alle sensorer</h1>
+    <p>sensorer go hard af</p>
+
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-secondary" style="background-color: #8793FF;">Første sensor</li>
+      
+      <li class="list-group-item list-group-item-secondary">Sensor 2</li>
+
+      <li class="list-group-item">Sensor 3</li>
+
+      <li class="list-group-item list-group-item-warning">Sensor 4</li>
+
+      <li class="list-group-item list-group-item-dark">Femte 5</li>
+
+
+    </ul>
+
+
+  </div>
+</main>
+<!--Main layout-->
 
 <!-- #region Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
@@ -63,7 +125,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Skriv command prompt for sensor</p>
+        <p>Skriv prompt for sensor</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
@@ -73,27 +135,6 @@
   </div>
 </div>
 <!--#endregion-->
-  
-
-<script>
-  // JavaScript to handle the active state
-  document.addEventListener('DOMContentLoaded', function () {
-      // Get the current page URL
-      var currentUrl = window.sensor.href;
-
-      // Get all navigation links
-      var navLinks = document.querySelectorAll('.w3-sidebar a');
-
-      // Loop through each link and check if its href matches the current URL
-      navLinks.forEach(function (link) {
-          if (link.href === currentUrl) {
-              // Add the 'active' class to the link
-              link.classList.add('active');
-          }
-      });
-  });
-</script>
-
 
 </body>
 </html>
