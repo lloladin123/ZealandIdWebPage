@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Import Bootstrap-->
+    <!-- Import Boostrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Import Styles -->
     <link rel="stylesheet" href="./Style/Index.css" />
@@ -11,12 +11,8 @@
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
     <!-- Import Axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
-    <!-- Import Google Library for Google sign-in -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> <!-- Write the client ID you created in dev console -->
 
     <title>Zealand Id</title>
-    <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
 
 <body>
@@ -24,7 +20,7 @@
        <div class="login-page">
            <div id="login-box">
             <div>
-                <img src="/Pages/assets/Zealand_logo.jpg" alt="Logo">
+                <img src="/assets/Zealand_logo.jpg" alt="Logo">
             </div> 
                <form @submit.prevent="login">
                    <h1 class="title">Login</h1>
@@ -39,9 +35,6 @@
                    <button type="submit">Login</button>
                </form>
                <div v-if="loginfail" class="error"></div>
-
-               <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
            </div>
        </div>
    </div>
