@@ -1,39 +1,30 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS # import CORS from flask_cors
-from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+import pyodbc
 
 app = Flask(__name__)
 CORS(app)   # Enable CORS for all routes in your Flask app
 
-"""
-# Configure the database URI. Replace with your actual database URI
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'your_database_connection_string_here'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable Flask-SQLAlchemy modification tracking
+# SQL server connection details
+server = 'mssql11.unoeuro.com'
+database = 'zealandid_dk_db_test'
+username = 'zealandid_dk'
+password = '4tn2gwfADdeRB5EGzm6b'
 
-# db = SQLAlchemy(app)
+# Create connection string
+connection_string = f'DRIVER=ODBC Driver 18 for SQL Server;SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
-# Define your models
+# Create connection to DB
+connection = pyodbc.connect(connection_string)
 
-class Lokale(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-
-class Sensor(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-
-# Create tables in the database
-with app.app_context():
-    db.create_all()
+# Create a cursor to execute SQL queries
+cursor = connection.cursor()
 
 """
-# Outcomment above code when database has been added
-
-
 # List to store lokaler and sensors (replace with a DB later)
-lokaler_list = []
-sensors_list = []
-admins_list = []
+# lokaler_list = []
+# sensors_list = []
+# admins_list = []
 
 # Route to get the list of lokaler
 @app.route('/lokaler', methods=['GET'])
@@ -84,47 +75,44 @@ def add_admin():
     else:
         return jsonify({'error': 'Name is required'}), 400
 
- #ADD REMAINING CODE FROM HERE WHEN DB HAS BEEN ADDED
 """
+
+# Routes for lokaler
 @app.route('/lokaler', methods=['GET'])
 def get_lokaler():
-    lokaler = Lokale.query.all()
-    lokaler_data = [{'id': lokale.id, 'name': lokale.name} for lokale in lokaler]
+    cursor.execute('SELECT * FROM Lokale')
+    lokaler_data = [{ 'LokaleId': row.LokaleId, 'Navn': row.Navn, 'SensorId': row.SensorId } for row in cursor.fetchall()]
     return jsonify(lokaler_data)
-
+    
 @app.route('/lokaler', methods=['POST'])
 def add_lokale():
     data = request.get_json()
 
-    if 'name' in data:
-        new_lokale = Lokale(name=data['name'])
-        db.session.add(new_lokale)
-        db.session.commit()
-        return jsonify({'id': new_lokale.id, 'name': new_lokale.name}), 201
+    if 'Navn' in data and 'SensorId' in data:
+        cursor.execute('INSERT INTO Lokale (Navn, SensorId) VALUES (?, ?)', data['Navn'], data['SensorId'])
+        connection.commit()
+        return jsonify({'LokaleId': cursor.lastrowid, 'Navn': data['Navn'], 'SensorId': data['SensorId']}), 201
     else:
-        return jsonify({'error': 'Name is required'}), 400
+        return jsonify({'error': 'Navn and SensorId are required'}), 400
 
-@app.route('/sensors', methods=['GET'])
+# Routes for sensors
+@app.route('/sensor', methods=['GET'])
 def get_sensors():
-    sensors = Sensor.query.all()
-    sensors_data = [{'id': sensor.id, 'name': sensor.name} for sensor in sensors]
-    return jsonify(sensors_data)
+    cursor.execute('SELECT * FROM Sensor')
+    sensor_data = [{'id': row.id, 'name': row.name} for row in cursor.fetchall()]
+    return jsonify(sensor_data)
 
-@app.route('/sensors', methods=['POST'])
+@app.route('/sensor', methods=['POST'])
 def add_sensor():
     data = request.get_json()
 
     if 'name' in data:
-        new_sensor = Sensor(name=data['name'])
-        db.session.add(new_sensor)
-        db.session.commit()
-        return jsonify({'id': new_sensor.id, 'name': new_sensor.name}), 201
+        cursor.execute('INSERT INTO Sensor (name) VALUES (?)', data['name'])
+        connection.commit()
+        return jsonify({'id': cursor.lastrowid, 'name': data['name']}), 201
     else:
         return jsonify({'error': 'Name is required'}), 400
 
-"""
-
-
-
+   
 if __name__ == '__main__':
     app.run(debug=True)
