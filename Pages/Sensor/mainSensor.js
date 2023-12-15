@@ -76,18 +76,19 @@ const app = Vue.createApp({
                 console.error('Error deleting Sensor:', error);
             }
         },
-        handleSearch() {
+        async handleSearch() {
             // Filter sensorsList based on the search query and searchBy
+            if(!this.searchQuery.trim()) {
+                await this.fetchSensors();
+                return;
+            }
+        
             const query = this.searchQuery.toLowerCase();
             this.sensorsList = this.sensorsList.filter(sensor => {
-                const searchTerm = sensor[this.searchBy].toString().toLowerCase();
+                const searchTerm = sensor.navn.toString().toLowerCase(); // Assuming you want to search by sensor name
                 return searchTerm.includes(query);
             });
-        },
-        setSearchBy(option) {
-            // Set the searchBy property
-            this.searchBy = option;
-        }                      
+        },                 
     },
     mounted() {
         this.fetchSensors();
