@@ -84,38 +84,71 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
   <div class="container pt-4">
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="input-group rounded">
-          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="bi bi-search"></i>
-          </span>      
+    <div class="col-md-4">
+      <div class="input-group rounded">
+        <input v-model="searchQuery" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
+        <span class="input-group-text border-0" id="search-addon">
+          <i class="bi bi-search"></i>
+        </span>
+        <div class="input-group-append">
+          <button @click="handleSearch" class="btn btn-outline-secondary" type="button">Search</button>
         </div>
       </div>
+    </div>
 
       <div class="col-md-2 list-group">
         <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
           <i class="bi bi-journal-plus"></i>
-        Opret sensor
+          Opret sensor
+        </button>
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <i class="bi bi-trash"></i> Delete sensor
         </button>
       </div>
+       
+
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Sensor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for entering Sensor ID for deletion -->
+                    <form @submit.prevent="deleteSensor">
+                        <div class="mb-3">
+                            <label for="sensorIdToDelete" class="form-label">Enter Sensor ID to delete:</label>
+                            <input v-model="sensorIdToDelete" type="text" class="form-control" id="sensorIdToDelete" placeholder="Sensor ID" required>
+                        </div>
+    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h2>Sensorer - overblik over Zealands sensorer</h2>
-   
-    <ul class="list-group col-md-4">
-      <li v-for="sensor in sensorList" class="list-group-item list-group-item-secondary" :key="sensor.name"> {{ sensor.name ? sensor.name : 'No ID' }}</li>
-    </ul>
+      <h2>Sensorer - overblik over Zealands sensorer</h2>
+       
+      <!-- Display the list of sensors -->
+      <ul class="list-group col-md-4">
+        <li v-for="sensor in sensorsList" class="list-group-item list-group-item-secondary" :key="sensor.sensorId">
+          <strong>SensorId:</strong> {{ sensor.sensorId }}<br>
+          <strong>Navn:</strong> {{ sensor.navn }}<br><br>
+        </li>
+      </ul>
 
-    
-  </div>
+    </div>
 </main>
 <!--Main layout-->
 
 <!-- #region Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" ref="createModalRef">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -123,23 +156,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Form for creating new item-->
-          <form @submit.prevent="addSensor">
-            <div class="mb-3">
-              <label for="inputData" class="form-label">Skriv navnet på den sensor, som du ønsker at oprette.</label>
-              <input v-model="newSensor" type="text" class="form-control" id="inputData" placeholder="Navn på sensor">
-            </div>
+        <!-- Form for creating new sensor -->
+        <form @submit.prevent="addSensor">
+          <div class="mb-3">
+            <label for="inputNavn" class="form-label">Skriv navnet på den sensor, som du ønsker at oprette.</label>
+            <input v-model="newSensor.navn" type="text" class="form-control" id="inputNavn" placeholder="Navn på sensor" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputSensorId" class="form-label">Skriv sensorId på den sensor.</label>
+            <input v-model="newSensor.sensorId" type="text" class="form-control" id="inputSensorId" placeholder="Sensor ID" required>
+          </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-              <button @click="addSensor" type="button" class="btn btn-primary">Opret</button>
-            </div>
-          
-          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+            <button type="submit" class="btn btn-primary">Opret</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
+</div>
+
 <!--#endregion-->
 
 </div>
