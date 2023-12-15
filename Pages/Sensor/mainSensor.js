@@ -24,7 +24,7 @@ const app = Vue.createApp({
             try {
                 // Make a POST request to create a new sensor
                 const response = await axios.post(baseUrl, {
-                    SensorId: this.newSensor.sensorId,
+                    SensorId: this.newSensor.sensorId, // Include the sensorId
                     Navn: this.newSensor.navn,
                     // Include other properties if needed
                 });
@@ -37,57 +37,43 @@ const app = Vue.createApp({
         
                 // Clear the input field
                 this.newSensor = {
-                    sensorId: "", // Clear sensorId as well
                     navn: "",
                     // Clear other properties if needed
                 };
         
                 // Log to update list (for testing)
                 console.log('Updated sensor list:', this.sensorsList);
-        
-                // Fetch the updated list
-                this.fetchSensors();
-        
-                // Close the modal
-                const createModal = new bootstrap.Modal(document.getElementById('createModal'));
-                createModal.hide();
             } catch (error) {
                 console.error('Error adding sensor:', error);
                 console.log('Error response data:', error.response.data);
             }
-        },
-        async deleteSensor() {
+        },          
+          async deleteSensor() {
             try {
-                console.log('Deleting Sensor with ID:', this.sensorIdToDelete);
-                if (!this.sensorIdToDelete) {
-                    console.error('Please provide a valid Sensor ID to delete.');
-                    return;
-                }
-                const deleteUrl = `${baseUrl}/${this.sensorIdToDelete}`;
-                const response = await axios.delete(deleteUrl);
-                console.log('Response from the server:', response.data);
-                this.fetchSensors();
-                this.sensorIdToDelete = '';
-
-                // Close the delete modal after successful deletion
-                const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.hide();
+              // Make a DELETE request to delete the sensor
+              const response = await axios.delete(`${baseUrl}/${this.sensorIdToDelete}`);
+          
+              // Log the response for debugging
+              console.log('Delete Sensor Response:', response);
+          
+              // Assuming the response indicates successful deletion
+              // Remove the sensor from the local list
+              this.sensorsList = this.sensorsList.filter(sensor => sensor.sensorId !== this.sensorIdToDelete);
+          
+              // Clear the input field
+              this.sensorIdToDelete = "";
+          
+              // Log to update list (for testing)
+              console.log('Updated sensor list:', this.sensorsList);
+          
+              // Close the modal
+              const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+              deleteModal.hide();
             } catch (error) {
-                console.error('Error deleting Sensor:', error);
+              console.error('Error deleting sensor:', error);
+              console.log('Error response data:', error.response.data);
             }
-        },
-        handleSearch() {
-            // Filter sensorsList based on the search query and searchBy
-            const query = this.searchQuery.toLowerCase();
-            this.sensorsList = this.sensorsList.filter(sensor => {
-                const searchTerm = sensor[this.searchBy].toString().toLowerCase();
-                return searchTerm.includes(query);
-            });
-        },
-        setSearchBy(option) {
-            // Set the searchBy property
-            this.searchBy = option;
-        }                      
+        }                             
     },
     mounted() {
         this.fetchSensors();

@@ -11,13 +11,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
   <!-- Import Styles -->
   <link rel="stylesheet" type="text/css" href="./lokaler.css">
-  <!-- Import Vue.js -->
-  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  <!-- Import Vue.js (Production Build) -->
+  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script>
+
   <!-- Import Axios -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
+
   <title>Lokaler - opret eller ændr lokaler</title>  
-  <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
   <div id="app">
@@ -61,17 +63,18 @@
       
       <!-- Logo -->
       <a class="navbar-brand" href="/Pages/Forside/Forside.html">
-        <img src="/Pages/assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
+        <img src="./assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
       </a>
 
       <!-- User button-->
       <div class="ms-auto d-flex flex-row">
         <a class="topnav-image" href="#">
           <div class="Icons">
-            <img src="/Pages/assets/Person.jpg" alt="Profile button" style="height: 30px; width: 30px;">
+            <img src="./assets/Person.jpg" alt="Profile button" style="height: 30px; width: 30px;">
           </div>
         </a>
         </div>  
+        
 
     </div>
     <!-- Container wrapper -->
@@ -101,13 +104,15 @@
           </button>
         </div>
       </div>
-
       <h2>Her finder du et overblik over alle oprettede lokaler hos Zealand</h2>
 
       <ul class="list-group col-md-4">
-        <li v-for="lokale in lokalerList" class="list-group-item list-group-item-secondary" :key="lokale.name"> {{ lokale.name ? lokale.name : 'No ID' }}</li>
-      </ul>
-
+        <li v-for="lokale in lokalerList" :key="lokale.lokaleId" class="list-group-item list-group-item-secondary">
+          Lokale ID: {{ lokale.lokaleId }}<br>
+          Navn: {{ lokale.navn }}<br>
+          Sensor ID: {{ lokale.sensorId }}
+        </li>
+      </ul>      
     </div>
   </main>
 <!--Main layout-->
@@ -141,6 +146,8 @@
 <!--#endregion-->
 
 </div>
+ <!-- Import Axios -->      
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 <!-- Import JS -->
 <script src="./main.js"></script>
 </body>

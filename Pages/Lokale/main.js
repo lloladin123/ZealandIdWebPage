@@ -1,62 +1,28 @@
+const baseUrl = "https://zealandidscanner.azurewebsites.net/api";
+const sensorsUrl = `${baseUrl}/sensors`; // Update this with the correct path to your sensors API
+const lokalerUrl = `${baseUrl}/lokale`;
+
 const app = Vue.createApp({
-
     data() {
-      return {
-        lokalerList: [], // Empty array of lokaler
-        newLokale: "", // Store the value of a new lokale
-      };
+        return {
+            lokalerList: [],
+        };
     },
-  
     methods: {
-        async updateLokale(updatedLokale) {
+        async fetchLokaler() {
             try {
-               // Make a PUT request to update the lokale on the backend
-               const response = await axios.put('http://127.0.0.1:5000/lokaler/${updatedLokale.id}', {
-                 name: updatedLokale.name, // Update with the new name
-                 id: updatedLokale.id,// Update with the the id
-               });
-           
-               // Assuming the response includes the updated lokale
-               const updatedData = response.data;
-               this.lokalerList.push(newLokale)
-           
-               // Update the lokale in the lokalerList
-               this.lokalerList = this.lokalerList.map(lokale => {
-                 if (lokale.id === updatedData.id) {
-                   return updatedData;
-                 }
-                 return lokale;
-               });
-           
-               // Log to update list (for testing)
-               console.log('Updated lokaler list:', this.lokalerList);
+                const response = await axios.get(lokalerUrl);
+                this.lokalerList = response.data;
             } catch (error) {
-               console.error('Error updating lokale:', error);
-            }
-           },
-
-        async addLokale() {
-            try {
-                // Make a POST request to your backend API to add a new lokale
-                const response = await axios.post('https://fu-recent-flask.azurewebsites.net/lokaler', {
-                    Navn: this.newLokale,
-                });
-
-                // Assuming the response includes the added lokale with an ID
-                const newLokale = response.data;
-                this.lokalerList.push(newLokale);
-
-                // Clear the input field
-                this.newLokale = '';
-
-                // Log to update list (for testing)
-                console.log('Updated lokaler list:', this.lokalerList);
-            }   catch (error) {
-                console.error('Error adding lokale:', error);
+                console.error('Error fetching Lokaler:', error);
             }
         },
+        // Add other methods as needed
+    },
+    mounted() {
+        this.fetchLokaler();
     },
 });
-  
-// Mount the app to the root element with id="app" 
+
+// Mount the app to the root element with id="app"
 app.mount("#app");
