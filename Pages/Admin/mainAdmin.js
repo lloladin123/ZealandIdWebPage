@@ -55,6 +55,19 @@ const app = Vue.createApp({
                 console.error('Error adding admin:', error);
             }
         },
+            async handleSearch() {
+              // Filter sensorsList based on the search query and searchBy
+              if(!this.searchQuery.trim()) {
+                  await this.fetchAdmins();
+                  return;
+              }
+          
+              const query = this.searchQuery.toLowerCase();
+              this.adminList = this.adminList.filter(admin => {
+                  const searchTerm = admin.navn.toString().toLowerCase(); // Assuming you want to search by sensor name
+                  return searchTerm.includes(query);
+              });
+        },
     },
 });
   

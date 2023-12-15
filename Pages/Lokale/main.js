@@ -17,6 +17,19 @@ const app = Vue.createApp({
                 console.error('Error fetching Lokaler:', error);
             }
         },
+        async handleSearch() {
+            // Filter sensorsList based on the search query and searchBy
+            if(!this.searchQuery.trim()) {
+                await this.fetchLokaler();
+                return;
+            }
+        
+            const query = this.searchQuery.toLowerCase();
+            this.lokalerList = this.lokalerList.filter(lokal => {
+                const searchTerm = lokal.navn.toString().toLowerCase(); // Assuming you want to search by sensor name
+                return searchTerm.includes(query);
+            });
+        },
         // Add other methods as needed
     },
     mounted() {
