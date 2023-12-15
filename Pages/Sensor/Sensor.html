@@ -1,185 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Import Bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <!-- Import Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
   <!-- Import Styles -->
   <link rel="stylesheet" type="text/css" href="./sensor.css">
   <!-- Import Vue.js -->
   <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
-  <!-- Import Axios -->
+  <!-- Import Axios -->      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
   <title>Sensorer ledige hos Zealand</title>
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/Pages/assets/favicon.ico">
 </head>
-
 <body>
   <div id="app">
-    <!-- Main Navigation -->
-    <header>
-      <!-- Sidebar -->
-      <nav id="navbarNav" class="collapse d-lg-block sidebar collapse bg-white">
-        <div class="position-sticky">
-          <div class="list-group list-group-flush mx-3 mt-4">
 
-            <a href="/Pages/Sensor/Sensor.html"
-              class="list-group-item list-group-item-action py-2 ripple active">
-              <!-- active class highlights page-->
-              <i class="bi bi-broadcast"></i>
-              <span> Sensorer</span>
-            </a>
+<!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="navbarNav" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
 
-            <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="bi bi-house"></i>
-              <span> Lokaler</span>
-            </a>
+        <a href="/Pages/Sensor/Sensor.html" class="list-group-item list-group-item-action py-2 ripple active"> <!-- active class highlights page-->
+          <i class="bi bi-broadcast"></i>
+          <span> Sensorer</span>
+        </a>
+      
+        <a href="/Pages/Lokale/lokaler.html" class="list-group-item list-group-item-action py-2 ripple">    
+          <i class="bi bi-house"></i>
+           <span> Lokaler</span>
+        </a>
 
-            <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="bi bi-shield-lock"></i>
-              <span> Administration</span>
-            </a>
+        <a href="/Pages/Admin/Admin.html" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="bi bi-shield-lock"></i>
+           <span> Administration</span>
+        </a>
 
+      </div>   
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar border-bottom">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+
+      
+      <!-- Toggle button for small screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Logo -->
+      <a class="navbar-brand" href="/Pages/Forside/Forside.html">
+        <img src="./assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
+      </a>
+
+      <!-- User button-->
+      <div class="ms-auto d-flex flex-row">
+        <a class="topnav-image" href="#">
+          <div class="Icons">
+            <img src="/Pages/assets/Person.jpg" alt="Profile button" style="height: 30px; width: 30px;">
           </div>
-        </div>
-      </nav>
-      <!-- Sidebar -->
+        </a>
+        </div>  
 
-      <!-- Navbar -->
-      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top custom-navbar border-bottom">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
 
-          <!-- Toggle button for small screens -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<!--Main layout-->
+<main style="margin-top: 58px">
+  <div class="container pt-4">
+    <div class="col-md-4">
+      <input v-model="searchQuery" type="text" class="form-control" placeholder="Søg på sensor" @input="handleSearch">
+      
+    </div>
+  </div>
 
-          <!-- Logo -->
-          <a class="navbar-brand" href="/Pages/Forside/Forside.html">
-            <img src="./assets/Zealand_logo.jpg" height="25" alt="Zealand logo" loading="lazy">
-          </a>
+      <div class="col-md-2 list-group">
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button" data-bs-toggle="modal" data-bs-target="#createModal">
+          <i class="bi bi-journal-plus"></i>
+          Opret sensor
+        </button>
+        <button type="button" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <i class="bi bi-trash"></i> Slet sensor
+        </button>
+      </div>
+       
 
-          <!-- User button-->
-          <div class="ms-auto d-flex flex-row">
-            <a class="topnav-image" href="#">
-              <div class="Icons">
-                <img src="./assets/Person.jpg" alt="Profile button" style="height: 30px; width: 30px;">
-              </div>
-            </a>
-          </div>
-
-        </div>
-        <!-- Container wrapper -->
-      </nav>
-      <!-- Navbar -->
-    </header>
-    <!-- Main Navigation -->
-
-    <!-- Main layout -->
-    <main style="margin-top: 58px">
-      <div class="container pt-4">
-
-        <div class="col-md-2 list-group">
-          <button type="button" class="list-group-item list-group-item-action py-2 ripple" id="create-button"
-            data-bs-toggle="modal" data-bs-target="#createModal">
-            <i class="bi bi-journal-plus"></i>
-            Opret sensor
-          </button>
-          <button type="button" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal"
-            data-bs-target="#deleteModal">
-            <i class="bi bi-trash"></i> Delete sensor
-          </button>
-        </div>
-
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Sensor</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <!-- Form for entering Sensor ID for deletion -->
-                <form @submit.prevent="deleteSensor">
-                  <div class="mb-3">
-                    <label for="sensorIdToDelete" class="form-label">Enter Sensor ID to delete:</label>
-                    <input v-model="sensorIdToDelete" type="text" class="form-control" id="sensorIdToDelete"
-                      placeholder="Sensor ID" required>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                  </div>
-                </form>
-              </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Slet Sensor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for entering Sensor ID for deletion -->
+                    <form @submit.prevent="deleteSensor">
+                        <div class="mb-3">
+                            <label for="sensorIdToDelete" class="form-label">Skriv id på den sensor, som du ønsker at slette:</label>
+                            <input v-model="sensorIdToDelete" type="text" class="form-control" id="sensorIdToDelete" placeholder="Sensor ID" required>
+                        </div>
+    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+                            <button type="submit" class="btn btn-danger">Slet</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-
-        <h2>Sensorer - overblik over Zealands sensorer</h2>
-
-        <!-- Display the list of sensors -->
-        <ul class="list-group col-md-4">
-          <li v-for="sensor in sensorsList" class="list-group-item list-group-item-secondary"
-            :key="sensor.sensorId">
-            <strong>SensorId:</strong> {{ sensor.sensorId }}<br>
-            <strong>Navn:</strong> {{ sensor.navn }}<br><br>
-          </li>
-        </ul>
-
-      </div>
-    </main>
-    <!-- Main layout -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true"
-      ref="createModalRef">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="createModalLabel">Opret ny sensor</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Form for creating new sensor -->
-            <form @submit.prevent="addSensor">
-
-              <div class="mb-3">
-                <label for="inputNavn" class="form-label">Skriv navnet på den sensor, som du ønsker at oprette.</label>
-                <input v-model="newSensor.navn" type="text" class="form-control" id="inputNavn"
-                  placeholder="Navn på sensor" required>
-              </div>
-              <div class="mb-3">
-                <label for="inputSensorId" class="form-label">Skriv sensorId på den sensor.</label>
-                <input v-model="newSensor.sensorId" type="text" class="form-control" id="inputSensorId"
-                  placeholder="Sensor ID" required>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-                <button type="submit" class="btn btn-primary">Opret</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Import JS -->
-    <script src="./mainSensor.js"></script>
-  </div>
-</body>
+      <h2>Sensorer</h2>
+       
+      <!-- Display the list of sensors -->
+      <ul class="list-group col-md-4">
+        <li v-for="sensor in sensorsList" class="list-group-item list-group-item-secondary" :key="sensor.sensorId">
+          <strong>SensorId:</strong> {{ sensor.sensorId }}<br>
+          <strong>Navn:</strong> {{ sensor.navn }}<br><br>
+        </li>
+      </ul>
 
+    </div>
+</main>
+<!--Main layout-->
+
+<!-- #region Modal -->
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true" ref="createModalRef">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createModalLabel">Opret ny sensor</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form for creating new sensor -->
+        <form @submit.prevent="addSensor">
+          <div class="mb-3">
+            <label for="inputNavn" class="form-label">Skriv navnet på den sensor, som du ønsker at oprette.</label>
+            <input v-model="newSensor.navn" type="text" class="form-control" id="inputNavn" placeholder="Navn på sensor" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputSensorId" class="form-label">Skriv sensorId på den sensor.</label>
+            <input v-model="newSensor.sensorId" type="text" class="form-control" id="inputSensorId" placeholder="Sensor ID" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+            <button type="submit" class="btn btn-primary">Opret</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!--#endregion-->
+
+</div>
+<!-- Import JS -->
+<script src="./mainSensor.js"></script>
+</body>
 </html>
