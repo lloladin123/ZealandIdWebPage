@@ -1,13 +1,30 @@
+const brugerUrl = "https://zealandbrugerapi.azurewebsites.net/api/bruger";
+
 const app = Vue.createApp({
 
     data() {
       return {
         adminList: [], // Empty array of admin
-        newAdmin: "", // Store the value of a new admin
+        newAdmin: {
+          Id: 0,
+          Admin: false,
+          Brugernavn: "",
+          Password: "",
+        },
+       
       };
     },
   
     methods: {
+
+        async fetchAdmin() {
+        try {
+            const response = await axios.get(brugerUrl);
+            this.adminList = response.data;
+        } catch (error) {
+            console.error('Error fetching Admins:', error);
+        }
+    },
         async updateAdmin(updatedAdmin) {
             try {
                // Make a PUT request to update the lokale on the backend
@@ -56,6 +73,9 @@ const app = Vue.createApp({
             }
         },
     },
+    mounted() {
+      this.fetchAdmin();
+  },
 });
   
 // Mount the app to the root element with id="app" 

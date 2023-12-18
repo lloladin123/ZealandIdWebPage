@@ -103,11 +103,17 @@
     </div>
 
     <h2>Admins til Zealands id-scanner og administration</h2>
-    <p>På denne side findes en liste over alle oprettede admins</p>
+    <p>På denne side findes en liste over alle oprettede admins</p>s
 
-    <ul class="list-group col-md-4">
-      <li v-for="admin in adminList" class="list-group-item list-group-item-secondary" :key="admin.name"> {{ admin.name ? admin.name : 'No ID' }}</li>
-    </ul>
+          <!-- Display the list of sensors -->
+          <ul class="list-group col-md-4">
+            <li v-for="admin in adminList" class="list-group-item list-group-item-secondary" :key="admin.Id">
+              <strong>Id:</strong> {{ admin.Id }}<br>
+              <strong>Admin Status:</strong> {{ admin.Admin }}<br><br>
+              <strong>Brugernavn:</strong> {{ admin.Brugernavn }}<br><br>
+              <strong>Password:</strong> {{ admin.Password }} <br><br>
+            </li>
+          </ul>
 
   </div>
 </main>
