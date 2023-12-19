@@ -103,15 +103,16 @@
     </div>
 
     <h2>Admins til Zealands id-scanner og administration</h2>
-    <p>På denne side findes en liste over alle oprettede admins</p>s
+    <p>På denne side findes en liste over alle oprettede admins</p>
 
-          <!-- Display the list of sensors -->
+          <!-- Display the list of sensors 
+          det virkede ikke når vi skrev: {{ a.Admin }} af en eller anden grund. evt. spørg henrik-->
           <ul class="list-group col-md-4">
-            <li v-for="admin in adminList" class="list-group-item list-group-item-secondary" :key="admin.Id">
-              <strong>Id:</strong> {{ admin.Id }}<br>
-              <strong>Admin Status:</strong> {{ admin.Admin }}<br><br>
-              <strong>Brugernavn:</strong> {{ admin.Brugernavn }}<br><br>
-              <strong>Password:</strong> {{ admin.Password }} <br><br>
+            <li v-for="a in adminList" class="list-group-item list-group-item-secondary" :key="a.id">
+              <strong>Id:</strong> {{ a.id }}<br>
+              <strong>Admin Status:</strong> {{ a.admin }}<br>
+              <strong>Brugernavn:</strong> {{ a.brugernavn }}<br>
+              <strong>Password:</strong> {{ a.password }} <br>
             </li>
           </ul>
 
