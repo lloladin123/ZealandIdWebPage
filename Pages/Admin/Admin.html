@@ -101,9 +101,16 @@
 
     <h2>Admins til Zealand</h2>
 
-    <ul class="list-group col-md-4">
-      <li v-for="admin in adminList" class="list-group-item list-group-item-secondary" :key="admin.name"> {{ admin.name ? admin.name : 'No ID' }}</li>
-    </ul>
+          <!-- Display the list of sensors 
+          det virkede ikke når vi skrev: {{ a.Admin }} af en eller anden grund. evt. spørg henrik-->
+          <ul class="list-group col-md-4">
+            <li v-for="a in adminList" class="list-group-item list-group-item-secondary" :key="a.id">
+              <strong>Id:</strong> {{ a.id }}<br>
+              <strong>Admin Status:</strong> {{ a.admin }}<br>
+              <strong>Brugernavn:</strong> {{ a.brugernavn }}<br>
+              <strong>Password:</strong> {{ a.password }} <br>
+            </li>
+          </ul>
 
   </div>
 </main>

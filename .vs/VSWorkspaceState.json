@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\tests"
+    "\\Pages",
+    "\\Pages\\Admin",
+    "\\tests",
+    "\\tests\\WebsiteTests",
+    "\\tests\\WebsiteTests\\WebsiteTests"
   ],
+  "SelectedNode": "\\tests\\WebsiteTests\\WebsiteTests\\WebsiteTests.csproj",
   "PreviewInSolutionExplorer": false
 }
